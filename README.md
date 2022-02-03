@@ -2,6 +2,14 @@
 
 > A blockchain with Smart Contracts support.
 
+## Planned features
+
+- [ ] Virtual Machine
+- [ ] Finke Language (Lexer, Parser & Compiler)
+- [ ] Blockchain (with PoW algorithm, peer discovery, ...)
+- [ ] Add support to the Finke Coin (Crypto Currency)
+- [ ] Add support to Smart Contracts
+
 ## Author
 
 👤 **Filippo Finke**
