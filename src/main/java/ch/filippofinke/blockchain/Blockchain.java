@@ -49,6 +49,9 @@ public class Blockchain {
         BigInteger targetValue = new BigInteger(targetHash, 16);
         BigInteger value = BigInteger.ZERO;
         Block block = null;
+
+        long start = System.currentTimeMillis();
+        long hashes = 0;
         do {
             long timestamp = System.currentTimeMillis();
 
@@ -62,8 +65,13 @@ public class Blockchain {
             block.calculateHash();
 
             value = new BigInteger(block.hash, 16);
+            hashes++;
 
         } while (value.compareTo(targetValue) != -1);
+
+        long end = System.currentTimeMillis() - start;
+        long rate = (long) (hashes / (end / 1000.0));
+        System.out.println("Mined block in " + end + "ms (" + Utils.formatValue(rate) + "H/s)");
 
         return block;
     }
