@@ -28,9 +28,9 @@ public class Block {
         genesis.previousHash = null;
         genesis.nonce = BigInteger.ZERO;
         genesis.difficulty = Config.STARTING_DIFFICULTY;
+        genesis.hash = Config.GENESIS_HASH;
         genesis.height = 0;
         genesis.timestamp = 0;
-        genesis.calculateHash();
         return genesis;
     }
 
