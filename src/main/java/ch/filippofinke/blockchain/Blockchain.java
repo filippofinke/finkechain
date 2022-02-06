@@ -30,6 +30,10 @@ public class Blockchain {
             // If invalid it will throw an InvalidBlockException
             block.validate();
 
+            if (block.timestamp < lastBlock.timestamp) {
+                throw new InvalidBlockException("The timestamp of the block is in the past");
+            }
+
             if (lastBlock.hash != block.previousHash) {
                 throw new InvalidBlockException("The previous hash of the block is not the hash of the previous block");
             }

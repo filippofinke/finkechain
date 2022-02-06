@@ -26,6 +26,11 @@ public class Block {
     }
 
     public void validate() throws InvalidBlockException {
+
+        if (this.timestamp > System.currentTimeMillis()) {
+            throw new InvalidBlockException("The timestamp of the block is in the future");
+        }
+
         if (this.hash == null) {
             this.hash = calculateHash();
         } else {
