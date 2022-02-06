@@ -2,6 +2,7 @@ package ch.filippofinke.blockchain;
 
 import java.math.BigInteger;
 
+import ch.filippofinke.blockchain.exceptions.InvalidBlockException;
 import ch.filippofinke.config.Config;
 import ch.filippofinke.utils.Utils;
 
@@ -18,7 +19,33 @@ public class Blockchain {
         blocks.add(Block.createGenesisBlock());
     }
 
-    public boolean add(Block block) {
+    public boolean add(Block block) throws InvalidBlockException {
+
+        Block lastBlock = getLastBlock();
+
+        if (lastBlock == null && block.hash != Config.GENESIS_HASH) {
+            throw new InvalidBlockException("This first block must be the genesis block");
+        } else if (lastBlock != null) {
+            if (lastBlock.hash != block.previousHash) {
+                throw new InvalidBlockException("The previous hash of the block is not the hash of the previous block");
+            }
+
+            if (lastBlock.height + 1 != block.height) {
+                throw new InvalidBlockException("The height of the block is not the height of the previous block + 1");
+            }
+
+            if (Math.abs(lastBlock.difficulty - block.difficulty) > 1) {
+                throw new InvalidBlockException("The difficulty must only adjust by 1");
+            }
+        }
+
+        BigInteger target = new BigInteger(calculateTargetHash(), 16);
+        BigInteger hash = new BigInteger(block.hash, 16);
+
+        if (hash.compareTo(target) != -1) {
+            throw new InvalidBlockException("The hash of the block doesn't meet the PoW requirements!");
+        }
+
         return blocks.add(block);
     }
 
