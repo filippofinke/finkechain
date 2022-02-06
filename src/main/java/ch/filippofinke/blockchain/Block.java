@@ -1,8 +1,8 @@
 package ch.filippofinke.blockchain;
 
 import java.math.BigInteger;
-
 import org.apache.commons.codec.digest.DigestUtils;
+import ch.filippofinke.config.Config;
 
 public class Block {
 
@@ -25,8 +25,12 @@ public class Block {
 
     public static Block createGenesisBlock() {
         Block genesis = new Block();
-        genesis.hash = "--genesis-block--";
-        genesis.difficulty = 1;
+        genesis.previousHash = null;
+        genesis.nonce = BigInteger.ZERO;
+        genesis.difficulty = Config.STARTING_DIFFICULTY;
+        genesis.height = 0;
+        genesis.timestamp = 0;
+        genesis.calculateHash();
         return genesis;
     }
 
