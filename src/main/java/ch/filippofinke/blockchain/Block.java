@@ -2,6 +2,8 @@ package ch.filippofinke.blockchain;
 
 import java.math.BigInteger;
 import org.apache.commons.codec.digest.DigestUtils;
+
+import ch.filippofinke.blockchain.exceptions.InvalidBlockException;
 import ch.filippofinke.config.Config;
 
 public class Block {
@@ -16,11 +18,21 @@ public class Block {
     public Block() {
     }
 
-    public void calculateHash() {
+    private String calculateHash() {
         String toHash = previousHash + Long.toString(difficulty) + nonce.toString() + Long.toString(timestamp)
                 + Long.toString(height);
 
-        this.hash = DigestUtils.sha256Hex(toHash);
+        return DigestUtils.sha256Hex(toHash);
+    }
+
+    public void validate() throws InvalidBlockException {
+        if (this.hash == null) {
+            this.hash = calculateHash();
+        } else {
+            if (!this.hash.equals(calculateHash())) {
+                throw new InvalidBlockException("Invalid block hash");
+            }
+        }
     }
 
     public static Block createGenesisBlock() {

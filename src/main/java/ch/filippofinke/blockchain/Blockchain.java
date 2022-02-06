@@ -26,6 +26,10 @@ public class Blockchain {
         if (lastBlock == null && block.hash != Config.GENESIS_HASH) {
             throw new InvalidBlockException("This first block must be the genesis block");
         } else if (lastBlock != null) {
+
+            // If invalid it will throw an InvalidBlockException
+            block.validate();
+
             if (lastBlock.hash != block.previousHash) {
                 throw new InvalidBlockException("The previous hash of the block is not the hash of the previous block");
             }
@@ -89,7 +93,12 @@ public class Blockchain {
             block.nonce = Utils.nextRandomBigInteger(Config.MAX_NONCE);
             block.timestamp = timestamp;
 
-            block.calculateHash();
+            try {
+                block.validate();
+            } catch (InvalidBlockException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
 
             value = new BigInteger(block.hash, 16);
             hashes++;
