@@ -1,3 +1,7 @@
+<p align="center">
+  <img alt="Logo" width="200" src="https://user-images.githubusercontent.com/37296364/152857688-7ff43313-fd4f-4bad-821f-26dcf03db4bd.gif" />
+</p>
+
 <h1 align="center">Welcome to finkechain 👋</h1>
 
 > A blockchain with Smart Contracts support.
