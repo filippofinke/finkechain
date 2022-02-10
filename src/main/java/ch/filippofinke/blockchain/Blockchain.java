@@ -4,12 +4,16 @@ import java.math.BigInteger;
 
 import ch.filippofinke.blockchain.exceptions.InvalidBlockException;
 import ch.filippofinke.config.Config;
+import ch.filippofinke.transactions.Transaction;
+import ch.filippofinke.transactions.TransactionsQueue;
 import ch.filippofinke.utils.List;
 import ch.filippofinke.utils.Utils;
+import ch.filippofinke.utils.exceptions.EmptyQueueException;
 
 public class Blockchain {
 
     private List<Block> blocks;
+    private TransactionsQueue transactionsQueue;
 
     public Block getLastBlock() {
         return blocks.getHead();
@@ -18,6 +22,11 @@ public class Blockchain {
     public Blockchain() {
         blocks = new List<Block>();
         blocks.add(Block.createGenesisBlock());
+        transactionsQueue = new TransactionsQueue();
+    }
+
+    public boolean addTransaction(Transaction transaction) {
+        return transactionsQueue.add(transaction);
     }
 
     public boolean add(Block block) throws InvalidBlockException {
@@ -88,12 +97,23 @@ public class Blockchain {
 
         long start = System.currentTimeMillis();
         long hashes = 0;
+
+        List<Transaction> transactions = new List<Transaction>();
+
+        try {
+            for (int i = 0; i < Config.MAX_TRANSACTIONS_PER_BLOCK; i++) {
+                transactions.add(transactionsQueue.get());
+            }
+        } catch (EmptyQueueException eqe) {
+        }
+
         do {
             long timestamp = System.currentTimeMillis();
 
             block = new Block();
             block.previousHash = getLastBlock().hash;
             block.difficulty = calculateDifficulty(timestamp);
+            block.transactions = transactions;
             block.height = getLastBlock().height + 1;
             block.nonce = Utils.nextRandomBigInteger(Config.MAX_NONCE);
             block.timestamp = timestamp;
