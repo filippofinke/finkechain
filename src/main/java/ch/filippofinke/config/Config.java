@@ -8,5 +8,6 @@ public class Config {
     public static final BigInteger MAX_NONCE = BigInteger.TWO.pow(64);
     public static final int STARTING_DIFFICULTY = 500000;
     public static final int MINE_RATE = 1000;
+    public static final int MAX_TRANSACTIONS_PER_BLOCK = 5;
     public static final String GENESIS_HASH = "to the moon";
 }
