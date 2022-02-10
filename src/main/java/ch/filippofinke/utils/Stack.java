@@ -1,7 +1,7 @@
-package ch.filippofinke.vm;
+package ch.filippofinke.utils;
 
-import ch.filippofinke.vm.exceptions.EmptyStackException;
-import ch.filippofinke.vm.exceptions.StackOverflowException;
+import ch.filippofinke.utils.exceptions.EmptyStackException;
+import ch.filippofinke.utils.exceptions.StackOverflowException;
 
 class Node<T> {
 

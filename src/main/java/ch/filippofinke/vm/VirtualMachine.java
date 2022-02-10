@@ -1,5 +1,7 @@
 package ch.filippofinke.vm;
 
+import ch.filippofinke.utils.Stack;
+
 public class VirtualMachine {
     private static final int STACK_SIZE = 1024;
 

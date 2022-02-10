@@ -1,4 +1,4 @@
-package ch.filippofinke.vm.exceptions;
+package ch.filippofinke.utils.exceptions;
 
 public class EmptyStackException extends RuntimeException {
     public EmptyStackException() {
