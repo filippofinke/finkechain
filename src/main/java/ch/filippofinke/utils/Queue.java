@@ -27,4 +27,12 @@ public class Queue<T> {
         return node.getValue();
     }
 
+    public void print() {
+        Node<T> tmp = head;
+        while (tmp != null) {
+            System.out.println(tmp.getValue());
+            tmp = tmp.next;
+        }
+    }
+
 }
