@@ -6,13 +6,15 @@ public class Queue<T> {
     private Node<T> head;
     private Node<T> tail;
 
-    public void enqueue(T value) {
+    public boolean enqueue(T value) {
         Node<T> node = new Node<T>(value);
         if (head == null)
             head = node;
         else
             tail.next = node;
         tail = node;
+
+        return true;
     }
 
     public T dequeue() throws EmptyQueueException {
