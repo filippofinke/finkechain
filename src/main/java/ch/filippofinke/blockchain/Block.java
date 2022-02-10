@@ -5,6 +5,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import ch.filippofinke.blockchain.exceptions.InvalidBlockException;
 import ch.filippofinke.config.Config;
+import ch.filippofinke.utils.List;
+import ch.filippofinke.transactions.Transaction;
 
 public class Block {
 
@@ -14,13 +16,15 @@ public class Block {
     public long difficulty;
     public long height;
     public long timestamp;
+    public List<Transaction> transactions;
 
     public Block() {
+        this.transactions = new List<Transaction>();
     }
 
     private String calculateHash() {
         String toHash = previousHash + Long.toString(difficulty) + nonce.toString() + Long.toString(timestamp)
-                + Long.toString(height);
+                + Long.toString(height) + transactions.toString();
 
         return DigestUtils.sha256Hex(toHash);
     }
@@ -55,7 +59,7 @@ public class Block {
     public String toString() {
         return "Block [previous=" + previousHash + ", hash=" + hash + ", difficulty="
                 + difficulty + ", nonce=" + nonce
-                + ", height=" + height + "]";
+                + ", height=" + height + ", timestamp=" + timestamp + ", transactions=" + transactions + "]";
     }
 
 }
