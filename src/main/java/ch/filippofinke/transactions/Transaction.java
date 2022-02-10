@@ -22,4 +22,20 @@ public class Transaction {
         return DigestUtils.sha256Hex(toHash.toString());
     }
 
+    @Override
+    public String toString() {
+
+        StringBuilder in = new StringBuilder();
+        for (TxIn txIn : txIns) {
+            in.append("\t" + txIn.toString() + "\n");
+        }
+
+        StringBuilder out = new StringBuilder();
+        for (TxOut txOut : txOuts) {
+            out.append("\t" + txOut.toString() + "\n");
+        }
+
+        return "Transaction [txIns=[\n" + in.toString() + "], txOuts=[\n" + out.toString() + "]]";
+    }
+
 }

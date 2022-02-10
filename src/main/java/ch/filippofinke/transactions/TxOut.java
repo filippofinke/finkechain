@@ -9,4 +9,9 @@ public class TxOut {
         this.address = address;
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return "txOut [address=" + address + ", amount=" + amount + "]";
+    }
 }
