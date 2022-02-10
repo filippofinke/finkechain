@@ -27,7 +27,7 @@ public class List<T> {
         StringBuilder sb = new StringBuilder();
         Node<T> node = head;
         while (node != null) {
-            sb.append(node.next + "\n");
+            sb.append(node.getValue() + "\n");
             node = node.next;
         }
         return sb.toString();
