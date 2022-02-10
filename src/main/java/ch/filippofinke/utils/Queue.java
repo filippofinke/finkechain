@@ -27,12 +27,15 @@ public class Queue<T> {
         return node.getValue();
     }
 
-    public void print() {
-        Node<T> tmp = head;
-        while (tmp != null) {
-            System.out.println(tmp.getValue());
-            tmp = tmp.next;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node<T> node = head;
+        while (node != null) {
+            sb.append(node.getValue() + "\n");
+            node = node.next;
         }
+        return sb.toString();
     }
 
 }

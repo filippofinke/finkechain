@@ -49,12 +49,15 @@ public class Stack<T> {
         return true;
     }
 
-    public void print() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         Node<T> node = top;
         while (node != null) {
-            System.out.println(node.getValue());
+            sb.append(node.getValue() + "\n");
             node = node.next;
         }
+        return sb.toString();
     }
 
 }
