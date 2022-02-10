@@ -1,14 +1,4 @@
-package ch.filippofinke.blockchain;
-
-class Node<T> {
-
-    Node<T> previous;
-    T value;
-
-    public Node(T value) {
-        this.value = value;
-    }
-}
+package ch.filippofinke.utils;
 
 public class List<T> {
 
@@ -16,7 +6,7 @@ public class List<T> {
 
     public T getHead() {
         if (head != null) {
-            return head.value;
+            return head.getValue();
         }
         return null;
     }
@@ -27,7 +17,7 @@ public class List<T> {
 
     public boolean add(T value) {
         Node<T> node = new Node<T>(value);
-        node.previous = head;
+        node.next = head;
         head = node;
         return true;
     }
@@ -37,8 +27,8 @@ public class List<T> {
         StringBuilder sb = new StringBuilder();
         Node<T> node = head;
         while (node != null) {
-            sb.append(node.value + "\n");
-            node = node.previous;
+            sb.append(node.next + "\n");
+            node = node.next;
         }
         return sb.toString();
     }

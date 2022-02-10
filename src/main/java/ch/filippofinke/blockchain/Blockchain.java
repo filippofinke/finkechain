@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import ch.filippofinke.blockchain.exceptions.InvalidBlockException;
 import ch.filippofinke.config.Config;
+import ch.filippofinke.utils.List;
 import ch.filippofinke.utils.Utils;
 
 public class Blockchain {
