@@ -3,21 +3,6 @@ package ch.filippofinke.utils;
 import ch.filippofinke.utils.exceptions.EmptyStackException;
 import ch.filippofinke.utils.exceptions.StackOverflowException;
 
-class Node<T> {
-
-    private T value;
-    Node<T> next;
-
-    public T getValue() {
-        return value;
-    }
-
-    public Node(T value) {
-        this.value = value;
-    }
-
-}
-
 public class Stack<T> {
 
     private int maxSize;
