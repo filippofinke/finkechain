@@ -28,6 +28,11 @@
       <artifactId>commons-codec</artifactId>
       <version>1.11</version>
     </dependency>
+    <dependency>
+      <groupId>org.web3j</groupId>
+      <artifactId>crypto</artifactId>
+      <version>3.3.1</version>
+    </dependency>
   </dependencies>
 
   <build>
