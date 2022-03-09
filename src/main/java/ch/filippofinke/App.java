@@ -1,4 +1,4 @@
-package ch.filippofinke.finkechain;
+package ch.filippofinke;
 
 import ch.filippofinke.blockchain.Block;
 import ch.filippofinke.blockchain.Blockchain;
@@ -14,14 +14,13 @@ public class App {
         Wallet w = new Wallet();
         w.save("w.fwallet");
         Wallet w2 = Wallet.loadWallet("w.fwallet");
-        
-        if(w.toString().equals(w2.toString())) {
+
+        if (w.toString().equals(w2.toString())) {
             System.out.println("Wallets are equal");
         } else {
             System.out.println("Wallets are not equal");
         }
 
-        
         TxIn in = new TxIn();
         in.txOutId = "test";
         in.txOutIndex = 0;
